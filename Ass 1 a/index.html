@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumBook Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #6c5ce7;
+    --accent: #ff7675;
+    --glass: rgba(255,255,255,0.90);
+    --card: rgba(0,0,0,0.05);
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+    --glow: 0 0 18px 2px #a29bfe, 0 0 32px 4px #fd79a8;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #f5f7fa, #e4ecf7 40%, #f7f7f7 70%, #d0e6ff 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
+    color: var(--text-dark);
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    z-index: 10;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--primary);
+    text-shadow: 0 2px 12px #a29bfe44;
+    transition: transform 0.3s;
+    cursor: pointer;
+    animation: logoPop 1.2s cubic-bezier(.68,-0.55,.27,1.55) 1;
+}
+@keyframes logoPop {
+    0% { transform: scale(0.7) rotate(-10deg); }
+    60% { transform: scale(1.15) rotate(3deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+.navbar a {
+    color: var(--text-dark);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.2s;
+}
+.navbar a:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.3s;
+    position: absolute;
+    left: 0; bottom: -4px;
+}
+.navbar a:hover {
+    color: var(--primary);
+}
+.navbar a:hover:after {
+    width: 100%;
+}
+
+/* MAIN CONTAINER */
+.app-window {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: var(--glass);
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.13);
+    overflow: hidden;
+    border: 1.5px solid #e4ecf7;
+    backdrop-filter: blur(2px);
+}
+
+/* HERO */
+.product-hero {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 60px;
+    align-items: center;
+    background: linear-gradient(90deg, #f5f7fa 60%, #e4ecf7 100%);
+    border-bottom: 1.5px solid #e4ecf7;
+}
+
+.image-side {
+    flex: 1;
+    min-width: 300px;
+    font-size: 8rem;
+    text-align: center;
+    filter: drop-shadow(0 8px 32px #6c5ce7aa);
+    transition: filter 0.3s;
+    animation: emojiFloat 2.5s ease-in-out infinite alternate;
+}
+@keyframes emojiFloat {
+    0% { filter: drop-shadow(0 8px 32px #6c5ce7aa); transform: translateY(0); }
+    100% { filter: drop-shadow(0 24px 48px #6c5ce7cc); transform: translateY(-12px); }
+}
+
+.content-side {
+    flex: 1.2;
+    min-width: 300px;
+}
+
+.status-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffeaa7, #fab1a0);
+    color: #2d3436;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px #fdcb6e33;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    animation: headingPop 1.2s cubic-bezier(.68,-0.55,.27,1.55) 1;
+}
+@keyframes headingPop {
+    0% { transform: scale(0.7); opacity: 0.2; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.pricing {
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: var(--text-light);
+    font-size: 1.3rem;
+    margin-left: 15px;
+}
+
+.details-panel {
+    background: #f1f3f5;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 2px 12px #b2bec333;
+}
+
+/* BUTTON */
+.buy-btn {
+    margin-top: 30px;
+    padding: 14px 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 18px #a29bfe44;
+    transition: 0.3s, box-shadow 0.3s;
+    position: relative;
+    outline: none;
+    animation: btnPop 1.2s cubic-bezier(.68,-0.55,.27,1.55) 1 0.2s;
+}
+.buy-btn:after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    border-radius: 50px;
+    box-shadow: var(--glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.buy-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 6px 32px #a29bfe77, 0 0 0 4px #fd79a822;
+}
+.buy-btn:hover:after {
+    opacity: 1;
+}
+@keyframes btnPop {
+    0% { transform: scale(0.7); opacity: 0.2; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* SECTIONS */
+section {
+    padding: 70px 60px;
+    background: transparent;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary);
+    text-shadow: 0 2px 12px #a29bfe22;
+    animation: headingPop 1.2s cubic-bezier(.68,-0.55,.27,1.55) 1 0.1s;
+}
+
+/* FEATURE GRID */
+.feature-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    color: var(--text-dark);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+}
+.feature-card:hover {
+    transform: translateY(-8px) scale(1.04) rotate(-1deg);
+    box-shadow: 0 16px 40px #6c5ce733, 0 0 0 4px #fd79a822;
+}
+
+.feature-card p {
+    color: var(--text-light);
+}
+
+/* SPEC GRID */
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 25px;
+}
+
+.spec-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+}
+.spec-box:hover {
+    transform: translateY(-8px) scale(1.04) rotate(1deg);
+    box-shadow: 0 16px 40px #6c5ce733, 0 0 0 4px #fd79a822;
+}
+
+.spec-box p {
+    color: var(--text-light);
+}
+
+/* TESTIMONIALS */
+.testimonial-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 260px;
+    font-style: italic;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    color: var(--text-dark);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+}
+.testimonial-card:hover {
+    transform: translateY(-8px) scale(1.04) rotate(-2deg);
+    box-shadow: 0 16px 40px #6c5ce733, 0 0 0 4px #fd79a822;
+}
+
+/* CODE BLOCK */
+.code-section {
+    padding: 60px;
+}
+
+pre {
+    background: #2d3436;
+    color: #dfe6e9;
+    padding: 25px;
+    border-radius: 15px;
+    overflow-x: auto;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 12px #636e7233;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 30px;
+    background: #2d3436;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    box-shadow: 0 -2px 12px #636e7233;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .product-hero { flex-direction: column; padding: 40px 20px; }
+    .image-side, .content-side { min-width: 220px; }
+}
+@media(max-width:768px){
+    .product-hero { padding: 30px 10px; }
+    h1 { font-size: 2rem; }
+    section { padding: 40px 10px; }
+    .app-window { margin: 10px; }
+}
+@media(max-width:500px){
+    .navbar { padding: 10px 10px; }
+    .logo { font-size: 1.2rem; }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">QuantumStore</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Features</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="app-window">
+
+<section class="product-hero">
+    <div class="image-side">💻</div>
+    <div class="content-side">
+        <div class="status-badge"><mark>New Release</mark></div>
+        <h1>QuantumBook <sup>Pro</sup></h1>
+        <div class="pricing">
+            <strong>$1,499</strong>
+            <span class="old-price">$1,899</span>
+        </div>
+        <p><i>The next generation of computing.</i> <em>Experience speed like never before.</em></p>
+
+        <div class="details-panel">
+            <ul>
+                <li><b>8-Core X<sub>2</sub> Chip</b></li>
+                <li><b>4K <sup>Ultra</sup> Retina</b></li>
+                <li><ins>Upgraded to 1TB SSD</ins></li>
+                <li><code>npm run boost</code></li>
+            </ul>
+        </div>
+
+        <button class="buy-btn">Buy Now</button>
+    </div>
+</section>
+
+<section>
+<h2>Key Features</h2>
+<div class="feature-grid">
+    <div class="feature-card">
+        <h3>⚡ Ultra Fast</h3>
+        <p>Next-gen processor delivers lightning-fast performance.</p>
+    </div>
+    <div class="feature-card">
+        <h3>🔋 Long Battery</h3>
+        <p>Up to <strong>20 hours</strong> battery backup.</p>
+    </div>
+    <div class="feature-card">
+        <h3>🎨 Premium Design</h3>
+        <p>Sleek aluminum body with ultra-thin profile.</p>
+    </div>
+</div>
+</section>
+
+<section>
+<h2>Technical Specifications</h2>
+<div class="spec-grid">
+    <div class="spec-box"><strong>Processor</strong><p>8-Core X<sub>2</sub></p></div>
+    <div class="spec-box"><strong>Memory</strong><p>16GB DDR5</p></div>
+    <div class="spec-box"><strong>Storage</strong><p>1TB SSD</p></div>
+    <div class="spec-box"><strong>Display</strong><p>4K Retina</p></div>
+</div>
+</section>
+
+<section>
+<h2>What Users Say</h2>
+<div class="testimonial-grid">
+    <div class="testimonial-card">“Super fast and lightweight. Perfect for coding.”<br><strong>– Developer</strong></div>
+    <div class="testimonial-card">“Battery lasts all day. Amazing performance.”<br><strong>– Student</strong></div>
+    <div class="testimonial-card">“Best laptop experience I’ve ever had.”<br><strong>– Designer</strong></div>
+</div>
+</section>
+
+<div class="code-section">
+<pre>
+{
+  "device": "QuantumBook",
+  "optimization": true,
+  "status": "Maximum_Performance"
+}
+</pre>
+</div>
+
+
+<section id="contact" style="padding-bottom:40px;">
+    <h2>Contact Us</h2>
+    <div style="max-width:500px;margin:0 auto;background:white;padding:32px 24px 24px 24px;border-radius:16px;box-shadow:0 6px 24px #6c5ce722;">
+        <form style="display:flex;flex-direction:column;gap:18px;">
+            <input type="text" name="name" placeholder="Your Name" required style="padding:12px 16px;border-radius:8px;border:1.5px solid #e4ecf7;font-size:1rem;">
+            <input type="email" name="email" placeholder="Your Email" required style="padding:12px 16px;border-radius:8px;border:1.5px solid #e4ecf7;font-size:1rem;">
+            <textarea name="message" placeholder="Your Message" rows="4" required style="padding:12px 16px;border-radius:8px;border:1.5px solid #e4ecf7;font-size:1rem;resize:vertical;"></textarea>
+            <button type="submit" class="buy-btn" style="width:fit-content;align-self:center;">Send Message</button>
+        </form>
+        <div style="text-align:center;color:var(--text-light);margin-top:18px;font-size:0.98rem;">Or email us at <a href="mailto:support@quantumstore.com" style="color:var(--primary);text-decoration:underline;">support@quantumstore.com</a></div>
+    </div>
+</section>
+
+<footer class="footer">
+© 2026 QuantumStore. All Rights Reserved.
+</footer>
+
+</div>
+
+</body>
+</html>
