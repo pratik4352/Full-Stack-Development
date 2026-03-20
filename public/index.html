@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agency Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">✈️ TravelHub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Explore the World with Us</h1>
+            <p>Discover amazing travel packages and book your dream vacation</p>
+            <a href="#packages" class="btn btn-primary">Browse Packages</a>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages-section">
+        <div class="container">
+            <h2>Our Travel Packages</h2>
+            <div id="packagesContainer" class="packages-grid"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <form id="contactForm" class="contact-form">
+                <input type="text" placeholder="Your Name" required id="name">
+                <input type="email" placeholder="Your Email" required id="email">
+                <input type="text" placeholder="Subject" required id="subject">
+                <textarea placeholder="Your Message" rows="5" required id="message"></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <div id="contactMessage"></div>
+
+            <div class="message-table-section" id="messageTableSection">
+                <h3>Received Messages</h3>
+                <button id="loadContactMessagesBtn" class="btn btn-secondary">Load Messages</button>
+                <div id="contactMessagesTableContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 TravelHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
