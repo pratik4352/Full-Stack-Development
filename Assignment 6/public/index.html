@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Used Items + Booking</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Used Item Marketplace + Appointment Booking</h1>
+    <p class="subtitle">Fast posting, instant booking, and smooth seller connections.</p>
+    <div class="hero-gif-wrapper">
+      <img class="hero-gif" src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Interactive marketplace animation" />
+      <span class="hero-cta">Browse deals. Book visits. Save money.</span>
+    </div>
+  </header>
+
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <main>
+    <section id="item-form-section">
+      <h2>Add New Item</h2>
+      <form id="itemForm">
+        <input type="text" name="title" placeholder="Title (e.g., Hero Bike)" required />
+        <input type="text" name="category" placeholder="Category (Car, Bike, Mobile...)" required />
+        <input type="text" name="condition" placeholder="Condition (new/used/good)" required />
+        <input type="number" name="price" placeholder="Price" required />
+        <input type="text" name="sellerName" placeholder="Seller Name" required />
+        <input type="text" name="location" placeholder="Location" />
+        <textarea name="description" placeholder="Description"></textarea>
+        <button type="submit">Add Item</button>
+      </form>
+    </section>
+
+    <section id="items-section">
+      <h2>Available Items</h2>
+      <div id="items"></div>
+    </section>
+
+    <section id="bookings-section">
+      <h2>Requested Bookings</h2>
+      <div id="bookings"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

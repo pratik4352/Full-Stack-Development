@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "_id": "1774070345576-0ebd50c8f6532",
+      "title": "wasdawsd",
+      "description": "adsvf",
+      "category": "asd",
+      "condition": "asd",
+      "price": 56,
+      "sellerName": "dwas",
+      "location": "wads",
+      "createdAt": "2026-03-21T05:19:05.577Z"
+    },
+    {
+      "_id": "1774070574312-d42c974ed25578",
+      "title": "wa",
+      "description": "ewfw",
+      "category": "asd",
+      "condition": "asd",
+      "price": 222,
+      "sellerName": "dwas",
+      "location": "wads",
+      "createdAt": "2026-03-21T05:22:54.312Z"
+    }
+  ],
+  "bookings": [
+    {
+      "_id": "1774070421689-7df8d48424cbc",
+      "item": "1774070345576-0ebd50c8f6532",
+      "customerName": "sad 3r3wr",
+      "customerEmail": "pratikghavate9@gmail.com",
+      "customerPhone": "2818919198",
+      "appointmentDate": "2026-03-19T21:20:00.000Z",
+      "notes": "3fdasf",
+      "createdAt": "2026-03-21T05:20:21.689Z"
+    },
+    {
+      "_id": "1774070595352-46190fdf9a319",
+      "item": "1774070574312-d42c974ed25578",
+      "customerName": "wqd",
+      "customerEmail": "pratikghavate9@gmail.com",
+      "customerPhone": "234",
+      "appointmentDate": "2026-04-03T05:23:00.000Z",
+      "notes": "2q3ws",
+      "createdAt": "2026-03-21T05:23:15.352Z"
+    }
+  ]
+}
