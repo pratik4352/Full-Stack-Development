@@ -59,36 +59,99 @@ const samplePackages = [
         description: 'Luxury shopping, desert safaris, and modern architecture.',
         activities: ['Desert Safari', 'Burj Khalifa', 'Shopping Mall', 'Beach Resort'],
         image: 'dubai.jpg'
+    },
+    {
+        name: 'Bali Paradise',
+        destination: 'Bali, Indonesia',
+        duration: 7,
+        price: 35000,
+        description: 'Relax on beautiful beaches and explore ancient temples.',
+        activities: ['Beach Relaxation', 'Temple Tours', 'Rice Terrace Walks', 'Traditional Dance'],
+        image: 'bali.jpg'
+    },
+    {
+        name: 'New York City Explorer',
+        destination: 'New York, USA',
+        duration: 6,
+        price: 65000,
+        description: 'Experience the vibrant energy of the Big Apple.',
+        activities: ['Statue of Liberty', 'Times Square', 'Broadway Show', 'Central Park'],
+        image: 'newyork.jpg'
+    },
+    {
+        name: 'Santorini Sunset',
+        destination: 'Santorini, Greece',
+        duration: 5,
+        price: 55000,
+        description: 'Stunning sunsets, white-washed buildings, and Mediterranean charm.',
+        activities: ['Sunset Watching', 'Wine Tasting', 'Beach Hopping', 'Volcano Tour'],
+        image: 'santorini.jpg'
+    },
+    {
+        name: 'Machu Picchu Trek',
+        destination: 'Cusco, Peru',
+        duration: 8,
+        price: 75000,
+        description: 'Journey to the ancient Incan citadel in the Andes.',
+        activities: ['Inca Trail Hiking', 'Ancient Ruins', 'Mountain Views', 'Local Culture'],
+        image: 'machupicchu.jpg'
+    },
+    {
+        name: 'Sydney Harbour Escape',
+        destination: 'Sydney, Australia',
+        duration: 6,
+        price: 60000,
+        description: 'Iconic landmarks and beautiful harbour views.',
+        activities: ['Sydney Opera House', 'Harbour Bridge', 'Bondi Beach', 'Aboriginal Culture'],
+        image: 'sydney.jpg'
+    },
+    {
+        name: 'Iceland Northern Lights',
+        destination: 'Reykjavik, Iceland',
+        duration: 5,
+        price: 80000,
+        description: 'Chase the aurora borealis and explore volcanic landscapes.',
+        activities: ['Northern Lights Viewing', 'Geyser Tours', 'Glacier Hiking', 'Hot Springs'],
+        image: 'iceland.jpg'
+    },
+    {
+        name: 'Morocco Desert Adventure',
+        destination: 'Marrakech, Morocco',
+        duration: 7,
+        price: 45000,
+        description: 'Experience the magic of the Sahara and ancient medinas.',
+        activities: ['Desert Camping', 'Camel Trekking', 'Medina Exploration', 'Spice Markets'],
+        image: 'morocco.jpg'
     }
 ];
 
-// Connect and seed
-async function seedDatabase() {
-    try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log('✓ MongoDB connected');
-
-        // Clear existing packages
-        await Package.deleteMany({});
-        console.log('✓ Cleared existing packages');
-
-        // Insert sample packages
-        const result = await Package.insertMany(samplePackages);
-        console.log(`✓ ${result.length} packages added to database`);
-        
-        console.log('\nPackages added:');
-        result.forEach(pkg => {
-            console.log(`  - ${pkg.name} (${pkg.destination}) - ₹${pkg.price}`);
-        });
-
-        process.exit(0);
-    } catch (error) {
-        console.error('✗ Error seeding database:', error.message);
-        process.exit(1);
+// Seed via API calls to running server
+async function seedViaAPI() {
+    console.log('🌱 Seeding packages via API...');
+    
+    for (const pkg of samplePackages) {
+        try {
+            const response = await fetch('http://localhost:3000/api/packages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(pkg)
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                console.log(`✓ Added: ${pkg.name}`);
+            } else {
+                console.log(`✗ Failed to add: ${pkg.name}`);
+            }
+        } catch (error) {
+            console.log(`✗ Error adding ${pkg.name}:`, error.message);
+        }
     }
+    
+    console.log('✓ Seeding completed!');
 }
 
-seedDatabase();
+// Run the seeding function
+seedViaAPI();

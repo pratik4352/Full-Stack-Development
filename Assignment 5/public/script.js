@@ -68,6 +68,68 @@ function displayContactMessages(messages) {
     container.appendChild(table);
 }
 
+// Load bookings from API
+async function loadBookings() {
+    try {
+        const response = await fetch(`${API_URL}/bookings`);
+        const result = await response.json();
+
+        if (result.success && result.data.length > 0) {
+            displayBookings(result.data);
+        } else {
+            document.getElementById('bookingsTableContainer').innerHTML = '<p>No bookings received yet.</p>';
+        }
+    } catch (error) {
+        console.error('Error loading bookings:', error);
+        document.getElementById('bookingsTableContainer').innerHTML = '<p>Error loading bookings. Make sure server is running.</p>';
+    }
+}
+
+// Display bookings in table
+function displayBookings(bookings) {
+    const container = document.getElementById('bookingsTableContainer');
+    container.innerHTML = '';
+
+    const table = document.createElement('table');
+    table.className = 'bookings-table';
+
+    const header = document.createElement('thead');
+    header.innerHTML = `
+        <tr>
+            <th>#</th>
+            <th>Customer Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Package</th>
+            <th>People</th>
+            <th>Departure Date</th>
+            <th>Total Price</th>
+            <th>Booked At</th>
+        </tr>
+    `;
+    table.appendChild(header);
+
+    const body = document.createElement('tbody');
+    bookings.forEach((booking, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${booking.customerName || ''}</td>
+            <td>${booking.email || ''}</td>
+            <td>${booking.phone || ''}</td>
+            <td>${booking.packageId ? booking.packageId.name : 'N/A'}</td>
+            <td>${booking.numberOfPeople || ''}</td>
+            <td>${booking.departureDate ? new Date(booking.departureDate).toLocaleDateString() : ''}</td>
+            <td>₹${booking.totalPrice || ''}</td>
+            <td>${new Date(booking.createdAt).toLocaleString()}</td>
+        `;
+        body.appendChild(row);
+    });
+
+    table.appendChild(body);
+    container.appendChild(table);
+}
+
 // Load Packages from API
 async function loadPackages() {
     try {
