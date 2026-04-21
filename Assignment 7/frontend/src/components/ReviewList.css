@@ -1,0 +1,54 @@
+.review-list {
+  display: grid;
+  gap: 15px;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 20px;
+  color: #95a5a6;
+  font-style: italic;
+}
+
+.review-item {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 4px;
+  border-left: 3px solid #3498db;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.reviewer {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.action-badge {
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.review-comment {
+  color: #555;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.action-description {
+  color: #7f8c8d;
+  font-size: 13px;
+  margin-top: 10px;
+  font-style: italic;
+}
